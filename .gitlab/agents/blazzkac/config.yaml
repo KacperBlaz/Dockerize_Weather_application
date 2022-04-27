@@ -1,5 +1,6 @@
 gitops:
   manifest_projects:
   - id: "joginator/gitlab-aws"
+    default_namespace: gitlab-agent-namespace
     paths:
     - glob: 'example.yaml'
