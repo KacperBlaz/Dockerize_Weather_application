@@ -2,4 +2,4 @@ gitops:
   manifest_projects:
   - id: "joginator/gitlab-aws"
     paths:
-    - glob: '/gitops-examples/**/*.{yaml,yml,json}
+    - glob: '/gitops-examples/**/*.{yaml,yml,json}'
