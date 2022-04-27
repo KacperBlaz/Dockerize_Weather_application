@@ -4,3 +4,7 @@ gitops:
     default_namespace: gitlab-agent-namespace
     paths:
     - glob: 'example.yaml'
+ci_access:
+  groups:
+    - id: joginator
+
