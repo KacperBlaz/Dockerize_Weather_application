@@ -1,19 +1,14 @@
 #from urllib.request import urlopen
 #import urllib.parse
-import requests
-import json
-import csv
-import math
+import sys, os, requests, json, csv, math
 
 
-
+API_KEY = os.environ.get('API_KEY')
+CITY = 'Barlinek'
 #TAKING DATA FROM API FOR SELECTED CITY
 def get_api_data():
-    api_endopint= "http://api.openweathermap.org/data/2.5/weather"
-    city = "Barlinek"
-    apikey = "eafba5712575b94d26865994d05cb3e3"
-    url = api_endopint + "?q=" + city + "&appid=" + apikey
-    request_url = requests.get(url)
+    api_endopint= "http://api.openweathermap.org/data/2.5/weather?q="+CITY+"&appid="+API_KEY
+    request_url = requests.get(api_endopint)
     if request_url.status_code == 200:
         data = json.loads(request_url.text)
         return data
@@ -22,14 +17,13 @@ print(get_api_data())
 
 # CELCIUS = Calvins - 273.15
 #CONVERTING CALVINS TO CELCIUS
-def args_from_output(api_response):
-        added_data_to_csv = []
+def args_from_output(api_response: dict) -> list:
         city = api_response['name']
         temperature = api_response['main']['temp']
-        convert_temperature = str(round(temperature - 273.15, 1)) + "℃"
-        added_data_to_csv.append(city)
-        added_data_to_csv.append(convert_temperature)
-        return added_data_to_csv
+        return [city, convert_temperature(temperature)]
+
+def convert_temperature(temperature: str) -> str:
+    return str(round(temperature - 273.15, 1)) + "℃"
 
 
 print(args_from_output(get_api_data()))
