@@ -1,6 +1,8 @@
 FROM mysql:8-debian
 ARG DEBIAN_FRONTEND=noninteractive
+WORKDIR /mysql
+COPY . .
 MAINTAINER kacperblaz@gmail.com
-ENV MYSQL_ROOT_LOGIN=root \
-    MSYQL_ROOT_PASSWORD=root
+RUN apt update -y && apt install --no-install-recommends -y \
+    net-tools
 EXPOSE 3306/tcp
