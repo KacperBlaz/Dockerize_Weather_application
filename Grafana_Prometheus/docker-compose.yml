@@ -3,11 +3,15 @@ version: "3"
 networks:
   monitoring:
     driver: bridge
+    ipam:
+      config:
+      - subnet: 172.21.0.0/24
 
 volumes:
   prometheus_data: {}
   grafana_data: {}
   mysql_data: {}
+  python_data: {}
 
 services:
 
@@ -30,11 +34,11 @@ services:
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-
     ports:
       - 9090:9090
     networks:
       - monitoring
+#        ipv4_address: 172.21.0.4
 
   grafana:
     image: grafana/grafana:latest
@@ -76,22 +80,26 @@ services:
     ports:
       - 3306:3306
     networks:
-      - monitoring
+      monitoring:
+        ipv4_address: 172.21.0.100
     volumes:
       - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_LOGIN
       - MYSQL_ROOT_PASSWORD
 
-  # weatherapp:
-  #   image: python:xx
-  #   container_name: Weather_App
-  #   ports:
-  #     - 7000:7000
-  #   networks:
-  #     - monitoring
-  #   environment:
-  #     - MYSQL_ROOT_LOGIN
-  #     - MYSQL_ROOT_PASSWORD
-  #     - API_KEY
-  #     - CITY
+  python3.10:
+    image: python:7.0
+    container_name: Weather_App
+    ports:
+      - 7000:7000
+    networks:
+      - monitoring
+    volumes:
+      - python_data:/var/lib/python
+    command: [ "sleep", "30d"]
+    environment:
+      - MYSQL_ROOT_LOGIN
+      - MYSQL_ROOT_PASSWORD
+      - API_KEY
+      - CITY
