@@ -9,6 +9,7 @@ MYSQL_ROOT_LOGIN = os.environ.get('MYSQL_ROOT_LOGIN')
 MYSQL_ROOT_PASSWORD = os.environ.get('MYSQL_ROOT_PASSWORD')
 DATABASE = 'weather'
 FILE = 'data.csv'
+TABLE_NAME = 'Temperature_test'
 DATABASE_IP = os.environ.get('DATABASE_IP')
 
 #TAKING DATA FROM API FOR SELECTED CITY
@@ -20,7 +21,6 @@ def get_api_data():
         return data
 
 
-# CELCIUS = Calvins - 273.15
 #CONVERTING CALVINS TO CELCIUS
 def args_from_output(api_response: dict) -> list:
     city = api_response['name']
@@ -40,9 +40,9 @@ def add_data_to_csv_file(csv_file, args):
         writer.writerow({"Name": args[0], "Temperature": args[1]})
 
 def import_csv_file_to_mysql_database(csv_file: str) -> str:
-    creating_database = "csvsql --db "+"mysql+pymysql://"+MYSQL_ROOT_LOGIN+":"+MYSQL_ROOT_PASSWORD+"@"+DATABASE_IP+"/"+DATABASE+ " --tables data5 --insert " + csv_file
+    creating_database = "csvsql --db "+"mysql+pymysql://"+MYSQL_ROOT_LOGIN+":"+MYSQL_ROOT_PASSWORD+"@"+DATABASE_IP+"/"+DATABASE+ " --tables " + TABLE_NAME + "--insert " + csv_file
     os.system(creating_database)
 
 print(args_from_output(get_api_data()))
-add_data_to_csv_file('data.csv', args_from_output(get_api_data()))
-import_csv_file_to_mysql_database('data.csv')
+add_data_to_csv_file(FILE, args_from_output(get_api_data()))
+import_csv_file_to_mysql_database(FILE)
