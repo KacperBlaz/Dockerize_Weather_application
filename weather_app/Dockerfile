@@ -1,5 +1,6 @@
 FROM python:3.10-slim-bullseye
 ARG DEBIAN_FRONTEND=noninteractive
+ENV SQLALCHEMY_SILENCE_UBER_WARNING=1
 WORKDIR /app
 COPY . .
 RUN apt update -y && apt install --no-install-recommends -y \

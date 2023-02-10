@@ -89,7 +89,7 @@ services:
       - MYSQL_ROOT_PASSWORD
 
   python3.10:
-    image: python:7.0
+    image: python:11
     container_name: Weather_App
     ports:
       - 7000:7000
@@ -97,7 +97,13 @@ services:
       - monitoring
     volumes:
       - python_data:/var/lib/python
-    command: [ "sleep", "30d"]
+    command: 
+      - /bin/bash
+      - -c
+      - |
+        sleep 10
+        python3 weather_app.py
+        sleep 30d
     environment:
       - MYSQL_ROOT_LOGIN
       - MYSQL_ROOT_PASSWORD
