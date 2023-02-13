@@ -7,7 +7,7 @@ build-job:
 #  before_script:
 #    - apt-get update && apt-get install make
   script:
-    - cd home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus
+    - cd home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
     - pwd
     - export TABLE_NAME='Pipeline_test'
     - docker-compose up &
