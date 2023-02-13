@@ -1,8 +1,6 @@
 stages:          
   - weather_app
 
-variables:
-  TABLE_NAME = 'Pipeline_test'
 
 build-job:
   stage: weather_app
@@ -10,5 +8,5 @@ build-job:
     - apt-get update && apt-get install make
   script:
     - cd $PROJECT_PATH
-    - export $TABLE_NAME
+    - export TABLE_NAME = 'Pipeline_test'
     - docker-compose up &
