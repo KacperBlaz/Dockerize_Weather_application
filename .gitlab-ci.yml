@@ -4,9 +4,9 @@ stages:
 
 build-job:
   stage: weather_app
-  before_script:
-    - apt-get update && apt-get install make
+#  before_script:
+#    - apt-get update && apt-get install make
   script:
     - cd $PROJECT_PATH
-    - export TABLE_NAME = 'Pipeline_test'
+    - export TABLE_NAME='Pipeline_test'
     - docker-compose up &
