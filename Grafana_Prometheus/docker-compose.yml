@@ -38,7 +38,6 @@ services:
       - 9090:9090
     networks:
       - monitoring
-#        ipv4_address: 172.21.0.4
 
   grafana:
     image: grafana/grafana:latest
@@ -97,13 +96,8 @@ services:
       - monitoring
     volumes:
       - python_data:/var/lib/python
-    command: 
-      - /bin/bash
-      - -c
-      - |
-        sleep 10
-        python3 weather_app.py
-        sleep 30d
+    depends_on:
+      - mysql
     environment:
       - MYSQL_ROOT_LOGIN
       - MYSQL_ROOT_PASSWORD

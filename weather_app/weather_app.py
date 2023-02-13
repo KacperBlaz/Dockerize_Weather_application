@@ -1,6 +1,12 @@
 #from urllib.request import urlopen
 #import urllib.parse
-import sys, os, requests, json, csv, math, csvkit
+import sys
+import os
+import requests
+import json
+import csv
+import math
+import csvkit
 
 
 API_KEY = os.environ.get('API_KEY')
