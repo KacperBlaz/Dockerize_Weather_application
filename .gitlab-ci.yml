@@ -14,6 +14,6 @@ test:
   before_script:
     - docker info
   script:
-    - docker cp VAGRANT_CREDS:/home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/ .
+    - sudo docker cp -r VAGRANT_CREDS:/home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/ .
     - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
     - docker-compose up
