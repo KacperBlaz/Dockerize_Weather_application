@@ -1,10 +1,13 @@
 weather_app:
   variables:
     TABLE_NAME: "Pipeline_test"
-#  before_script:
-#    - apt-get update && apt-get install make
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker info
+    - docker-compose --version
   script:
     - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus
     - export TABLE_NAME=$TABLE_NAME
-    - systemctl status docker
     - docker-compose up
