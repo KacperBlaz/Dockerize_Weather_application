@@ -5,6 +5,7 @@ stages:
 variables:
   TABLE_NAME: "Pipeline_test"
   DOCKER_TLS_CERTS: "/certs"
+  DOCKER_HOST: tcp://localhost:2375
 
 
 test:
