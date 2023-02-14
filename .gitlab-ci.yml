@@ -5,6 +5,7 @@ weather_app:
 #  before_script:
 #    - apt-get update && apt-get install make
   script:
+    - pwd
     - cd $PATH
     - export TABLE_NAME=$TABLE_NAME
     - systemctl status docker
