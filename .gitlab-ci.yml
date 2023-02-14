@@ -6,14 +6,14 @@ variables:
   TABLE_NAME: "Pipeline_test"
   DOCKER_TLS_CERTS: "/certs"
 
-
-weather_app:
-  image: docker:20-git
-  services:
-    - docker:20-dind
-  before_script:
-    - docker info
-  script:
-    - docker cp VAGRANT_CREDS:/home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/ .
-    - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
-    - docker-compose up
+build_job:
+  weather_app:
+    image: docker:20-git
+    services:
+      - docker:20-dind
+    before_script:
+      - docker info
+    script:
+      - docker cp VAGRANT_CREDS:/home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/ .
+      - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
+      - docker-compose up
