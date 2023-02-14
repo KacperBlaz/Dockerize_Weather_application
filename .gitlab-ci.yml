@@ -1,12 +1,19 @@
+stages:
+  - weather_app
+
+
+variables:
+  TABLE_NAME: "Pipeline_test"
+  DOCKER_TLS_CERTS: "/certs"
+
+
 weather_app:
-  variables:
-    TABLE_NAME: "Pipeline_test"
-  image: docker:latest
+  image: docker:20-git
   services:
-    - docker:dind
+    - docker:20-dind
   before_script:
     - docker info
   script:
-    - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus
-    - export TABLE_NAME=$TABLE_NAME
+    - docker cp VAGRANT_CREDS:/home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/ .
+    - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
     - docker-compose up
