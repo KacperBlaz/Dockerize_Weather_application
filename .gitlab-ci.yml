@@ -1,5 +1,5 @@
 variables:
-  TABLE_NAME='Pipeline_test'
+  - TABLE_NAME="Pipeline_test"
 
 
 #  before_script:
