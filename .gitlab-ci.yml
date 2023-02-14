@@ -1,7 +1,6 @@
 weather_app:
   variables:
     TABLE_NAME: "Pipeline_test"
-    PATH: /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus
 #  before_script:
 #    - apt-get update && apt-get install make
   script:
