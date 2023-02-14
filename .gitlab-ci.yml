@@ -1,10 +1,14 @@
+stages:
+  - weather_app
+
+
 variables:
   TABLE_NAME: "Pipeline_test"
 
-
+weather_app:
 #  before_script:
 #    - apt-get update && apt-get install make
-script:
-  - cd $PROJECT_PATH
-  - export $TABLE_NAME
-  - docker-compose up &
+  script:
+    - cd $PROJECT_PATH
+    - export TABLE_NAME=$TABLE_NAME
+    - docker-compose up &
