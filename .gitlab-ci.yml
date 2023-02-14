@@ -1,11 +1,6 @@
-stages:
-  - weather_app
-
-
-variables:
-  TABLE_NAME: "Pipeline_test"
-
 weather_app:
+  variables:
+    TABLE_NAME: "Pipeline_test"
 #  before_script:
 #    - apt-get update && apt-get install make
   script:
