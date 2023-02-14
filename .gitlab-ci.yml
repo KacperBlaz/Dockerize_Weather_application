@@ -1,13 +1,14 @@
 stages:          
   - weather_app
 
+variables:
+  TABLE_NAME='Pipeline_test'
 
 build-job:
   stage: weather_app
 #  before_script:
 #    - apt-get update && apt-get install make
   script:
-    - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus
-    - pwd
-    - export TABLE_NAME='Pipeline_test'
+    - cd $PROJECT_PATH
+    - export $TABLE_NAME
     - docker-compose up &
