@@ -10,8 +10,9 @@ test:
     TABLE_NAME: "Pipeline_test"
     DOCKER_TLS_CERTS: "/certs"
     CITY: "Barlinek"
+    PATH: $(cd $PROJECT_PATH)
   before_script:
-    - cd $PROJECT_PATH
+    - $PATH
   script:
     - env
     - docker-compose up &
