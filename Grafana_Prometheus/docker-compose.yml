@@ -17,7 +17,7 @@ services:
 
   node-exporter:
     image: quay.io/prometheus/node-exporter:latest
-    restart: unless-stopped
+    restart: always
     container_name: Node-Exporter
     pid: host
     volumes:
@@ -28,7 +28,7 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: Prometheus
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./prometheus_configuration/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
@@ -44,7 +44,7 @@ services:
     container_name: Grafana_Dashboard
     ports:
       - 3000:3000
-    restart: unless-stopped
+    restart: always
     environment:
       - GRAFANA_MYSQL_PASSWORD
     volumes:
@@ -88,7 +88,7 @@ services:
       - MYSQL_ROOT_PASSWORD
 
   python3.10:
-    image: python:13
+    image: python:15-alpine
     container_name: Weather_App
     ports:
       - 7000:7000
@@ -104,3 +104,4 @@ services:
       - API_KEY
       - CITY
       - DATABASE_IP
+      - TABLE_NAME
