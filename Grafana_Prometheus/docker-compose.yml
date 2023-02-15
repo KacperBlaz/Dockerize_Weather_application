@@ -98,6 +98,8 @@ services:
       - python_data:/var/lib/python
     depends_on:
       - mysql
+    command:
+      - sleep 7d
     environment:
       - MYSQL_ROOT_LOGIN
       - MYSQL_ROOT_PASSWORD
