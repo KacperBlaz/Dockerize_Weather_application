@@ -10,12 +10,12 @@ import csvkit
 
 
 API_KEY = os.environ.get('API_KEY')
-CITY = 'Barlinek'
+CITY = os.environ.get('CITY')
 MYSQL_ROOT_LOGIN = os.environ.get('MYSQL_ROOT_LOGIN')
 MYSQL_ROOT_PASSWORD = os.environ.get('MYSQL_ROOT_PASSWORD')
 DATABASE = 'weather'
 FILE = 'data.csv'
-TABLE_NAME = 'Pipeline_test'
+TABLE_NAME = os.environ.get('TABLE_NAME')
 DATABASE_IP = os.environ.get('DATABASE_IP')
 
 #TAKING DATA FROM API FOR SELECTED CITY
@@ -46,7 +46,7 @@ def add_data_to_csv_file(csv_file, args):
         writer.writerow({"Name": args[0], "Temperature": args[1]})
 
 def import_csv_file_to_mysql_database(csv_file: str) -> str:
-    creating_database = "csvsql --db "+"mysql+pymysql://"+MYSQL_ROOT_LOGIN+":"+MYSQL_ROOT_PASSWORD+"@"+DATABASE_IP+"/"+DATABASE+ " --tables " + TABLE_NAME + "--insert " + csv_file
+    creating_database = "csvsql --db "+"mysql+pymysql://"+MYSQL_ROOT_LOGIN+":"+MYSQL_ROOT_PASSWORD+"@"+DATABASE_IP+"/"+DATABASE+ " --tables " + TABLE_NAME + " --insert " + csv_file
     os.system(creating_database)
 
 

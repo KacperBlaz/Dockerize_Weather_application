@@ -1,20 +1,16 @@
 stages:
-  - test
+  - deploy_weather_app
+  - delete_weather_app
 
-
-test:
+deploy_weather_app:
   image: docker:20-git
   services:
     - docker:20-dind
   variables:
-    TABLE_NAME: "Pipeline_test"
     DOCKER_TLS_CERTS: "/certs"
-    CITY: "Barlinek"
-  # before_script:
-  #   - export PATH=$PROJECT_PATH
   script:
     - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
-    - pwd
-    - ls
-    - env
     - docker-compose up &
+delete_weather_app:
+  script:
+    - docker-compose down
