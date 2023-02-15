@@ -2,17 +2,14 @@ stages:
   - test
 
 
-variables:
-  TABLE_NAME: "Pipeline_test"
-  DOCKER_TLS_CERTS: "/certs"
-
-
 test:
   image: docker:20-git
   services:
     - docker:20-dind
-  before_script:
-    - docker info
+  variables:
+    TABLE_NAME: "Pipeline_test"
+    DOCKER_TLS_CERTS: "/certs"
   script:
-    - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
-    - docker-compose up
+    - env
+    - cd $PROJECT_PATH
+    - docker-compose up &
