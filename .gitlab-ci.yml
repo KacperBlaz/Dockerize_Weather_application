@@ -10,9 +10,9 @@ test:
     TABLE_NAME: "Pipeline_test"
     DOCKER_TLS_CERTS: "/certs"
     CITY: "Barlinek"
-  before_script:
-    - export PATH=$PROJECT_PATH
+  # before_script:
+  #   - export PATH=$PROJECT_PATH
   script:
-    - cd $PATH
+    - cd home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
     - env
     - docker-compose up &
