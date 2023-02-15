@@ -13,6 +13,7 @@ test:
   # before_script:
   #   - export PATH=$PROJECT_PATH
   script:
-    - cd home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
+    - sudo docker cp -r VAGRANT_CREDS:$PROJECT_PATH .
+    - cd $PROJECT_PATH
     - env
     - docker-compose up &
