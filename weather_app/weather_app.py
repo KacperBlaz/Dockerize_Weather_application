@@ -15,7 +15,7 @@ MYSQL_ROOT_LOGIN = os.environ.get('MYSQL_ROOT_LOGIN')
 MYSQL_ROOT_PASSWORD = os.environ.get('MYSQL_ROOT_PASSWORD')
 DATABASE = 'weather'
 FILE = 'data.csv'
-TABLE_NAME = os.environ.get('TABLE_NAME')
+TABLE_NAME = 'Pipeline_test'
 DATABASE_IP = os.environ.get('DATABASE_IP')
 
 #TAKING DATA FROM API FOR SELECTED CITY
