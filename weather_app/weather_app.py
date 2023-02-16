@@ -46,8 +46,8 @@ def add_data_to_csv_file(csv_file, args):
         writer.writerow({"Name": args[0], "Temperature": args[1]})
 
 def import_csv_file_to_mysql_database(csv_file: str) -> str:
-    creating_database = "csvsql --db "+"mysql+pymysql://"+MYSQL_ROOT_LOGIN+":"+MYSQL_ROOT_PASSWORD+"@"+DATABASE_IP+"/"+DATABASE+ " --tables " + TABLE_NAME + " --insert " + csv_file
-    os.system(creating_database)
+    add_table_to_database = "csvsql --db "+"mysql+pymysql://"+MYSQL_ROOT_LOGIN+":"+MYSQL_ROOT_PASSWORD+"@"+DATABASE_IP+"/"+DATABASE+ " --tables " + TABLE_NAME + " --insert " + csv_file
+    os.system(add_table_to_database)
 
 
 print(args_from_output(get_api_data()))
