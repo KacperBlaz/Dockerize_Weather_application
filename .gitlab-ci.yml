@@ -1,8 +1,8 @@
 stages:
-  - deploy_weather_app
+  - weather_app
   - delete_weather_app
 
-deploy_weather_app:
+weather_app:
   image: docker:20-git
   services:
     - docker:20-dind
