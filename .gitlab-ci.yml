@@ -3,19 +3,19 @@ stages:
   - delete_weather_app
 
 deploy_weather_app:
-  deploy_app:
-    image: docker:20-git
-    services:
-      - docker:20-dind
-    variables:
-      DOCKER_TLS_CERTS: "/certs"
-    script:
-      - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
-      - docker-compose up &
+  stage: deploy_weather_app
+  image: docker:20-git
+  services:
+    - docker:20-dind
+  variables:
+    DOCKER_TLS_CERTS: "/certs"
+  script:
+    - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
+    - docker-compose up &
 
 
 delete_weather_app:
-  delete_app:
-    script:
-      - docker-compose down
+  stage: delete_weather_app
+  script:
+    - docker-compose down
 
