@@ -11,7 +11,8 @@ deploy_weather_app:
     DOCKER_TLS_CERTS: "/certs"
   script:
     - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
-    - docker-compose up &
+    - docker-compose up
+    - sleep 2m
 
 
 delete_weather_app:
