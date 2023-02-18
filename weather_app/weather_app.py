@@ -1,6 +1,3 @@
-#from urllib.request import urlopen
-#import urllib.parse
-import sys
 import os
 import requests
 import json
