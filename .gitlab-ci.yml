@@ -1,9 +1,21 @@
+variable:
+  COMPOSE_FILE: ./Grafana_Prometheus/docker-compose.yml
+
 stages:
-  - deploy_weather_app
-  - delete_weather_app
+  - build
+  - deploy
+  - delete
+
+app:
+  stage: build
+  scipt: docker build -f ./weather_app/Dockerfile .
+
+db:
+  stage: build
+  scipt: docker build -f ./mysql_database/Dockerfile .
 
 deploy_weather_app:
-  stage: deploy_weather_app
+  stage: deploy
   image: docker:20-git
   services:
     - docker:20-dind
@@ -15,8 +27,7 @@ deploy_weather_app:
 
 
 delete_weather_app:
-  stage: delete_weather_app
+  stage: delete
   script:
-    - cd /home/vagrant/MY_PROJECT/GITLAB_DOCKERIZE_APPLICATION/Dockerize_Weather_application/Grafana_Prometheus/
     - docker-compose down
   when: manual
