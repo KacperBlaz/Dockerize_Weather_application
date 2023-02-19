@@ -1,4 +1,4 @@
-variable:
+variables:
   COMPOSE_FILE: ./Grafana_Prometheus/docker-compose.yml
 
 stages:
