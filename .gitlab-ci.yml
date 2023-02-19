@@ -8,11 +8,11 @@ stages:
 
 app:
   stage: build
-  scipt: docker build -f ./weather_app/Dockerfile .
+  script: docker build -f ./weather_app/Dockerfile .
 
 db:
   stage: build
-  scipt: docker build -f ./mysql_database/Dockerfile .
+  script: docker build -f ./mysql_database/Dockerfile .
 
 deploy_weather_app:
   stage: deploy
