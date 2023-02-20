@@ -3,7 +3,7 @@ import requests
 import json
 import csv
 import math
-import csvkit
+import csv
 
 
 API_KEY = os.environ.get('API_KEY')
@@ -15,14 +15,17 @@ FILE = 'data.csv'
 TABLE_NAME = os.environ.get('TABLE_NAME')
 DATABASE_IP = os.environ.get('DATABASE_IP')
 
+
 #TAKING DATA FROM API FOR SELECTED CITY
 def get_api_data():
-    api_endopint= "http://api.openweathermap.org/data/2.5/weather?q="+CITY+"&appid="+API_KEY
-    request_url = requests.get(api_endopint)
+    api_endpoint= (f"http://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}")
+    request_url = requests.get(api_endpoint)
+    print(api_endpoint)
     if request_url.status_code == 200:
         data = json.loads(request_url.text)
         return data
 
+get_api_data()
 
 #CONVERTING CALVINS TO CELCIUS
 def args_from_output(api_response: dict) -> list:
@@ -43,7 +46,8 @@ def add_data_to_csv_file(csv_file, args):
         writer.writerow({"Name": args[0], "Temperature": args[1]})
 
 def import_csv_file_to_mysql_database(csv_file: str) -> str:
-    add_table_to_database = "csvsql --db "+"mysql+pymysql://"+MYSQL_ROOT_LOGIN+":"+MYSQL_ROOT_PASSWORD+"@"+DATABASE_IP+"/"+DATABASE+ " --tables " + TABLE_NAME + " --insert " + csv_file
+    add_table_to_database = (f"csvsql --db mysql+pymysql://{MYSQL_ROOT_LOGIN}:{MYSQL_ROOT_PASSWORD}@{DATABASE_IP}/{DATABASE} --tables "
+    f"{TABLE_NAME} --insert {csv_file}")
     os.system(add_table_to_database)
 
 
