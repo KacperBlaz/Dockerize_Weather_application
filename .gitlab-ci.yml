@@ -29,5 +29,6 @@ deploy_weather_app:
 delete_weather_app:
   stage: delete
   script:
+    - ls
     - docker-compose down
   when: manual
