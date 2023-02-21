@@ -3,7 +3,6 @@ services:
   - docker:20-dind
 
 
-
 variables:
   COMPOSE_FILE: ./Grafana_Prometheus/docker-compose.yml
   DOCKER_TLS_CERTS: "/certs"
@@ -18,14 +17,14 @@ app:
   variables:
     IMAGE_NAME: python
     IMAGE_TAG: weatherapp
-  script: docker build -t $IMAGE_NAME:IMAGE_TAG ./weather_app
+  script: docker build -t $IMAGE_NAME:$IMAGE_TAG ./weather_app
 
 db:
   stage: build
   variables:
     IMAGE_NAME: mysql
     IMAGE_TAG: weatherapp
-  script: docker build -t $IMAGE_NAME:IMAGE_TAG ./mysql_database
+  script: docker build -t $IMAGE_NAME:$IMAGE_TAG ./mysql_database
 
 deploy_weather_app:
   stage: deploy
