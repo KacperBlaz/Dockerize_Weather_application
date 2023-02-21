@@ -74,7 +74,7 @@ services:
       - /dev/ksmg
 
   mysql:
-    image: mysql:2.0
+    image: mysql:weatherapp
     container_name: mysql_database
     ports:
       - 3306:3306
@@ -88,7 +88,7 @@ services:
       - MYSQL_ROOT_PASSWORD
 
   python3.10:
-    image: python:15-alpine
+    image: python:weatherapp
     container_name: Weather_App
     ports:
       - 7000:7000
