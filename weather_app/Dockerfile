@@ -15,5 +15,5 @@ RUN apt update -y && apt install --no-install-recommends -y \
     python3-pip \
     iputils-ping \
     && pip3 install --upgrade pip \
-       pip3 install -r ./requirements.txt
+       pip3 install -r ./weather_app/requirements.txt
 ENTRYPOINT ["python3", "weather_app.py" ]

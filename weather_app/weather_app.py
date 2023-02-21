@@ -19,13 +19,12 @@ DATABASE_IP = os.environ.get('DATABASE_IP')
 #TAKING DATA FROM API FOR SELECTED CITY
 def get_api_data():
     api_endpoint= (f"http://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}")
+    print(api_endpoint)
     request_url = requests.get(api_endpoint)
     print(api_endpoint)
     if request_url.status_code == 200:
         data = json.loads(request_url.text)
         return data
-
-get_api_data()
 
 #CONVERTING CALVINS TO CELCIUS
 def args_from_output(api_response: dict) -> list:
@@ -50,7 +49,7 @@ def import_csv_file_to_mysql_database(csv_file: str) -> str:
     f"{TABLE_NAME} --insert {csv_file}")
     os.system(add_table_to_database)
 
-
+get_api_data()
 print(args_from_output(get_api_data()))
 add_data_to_csv_file(FILE, args_from_output(get_api_data()))
 import_csv_file_to_mysql_database(FILE)
