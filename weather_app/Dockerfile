@@ -16,4 +16,5 @@ RUN apt update -y && apt install --no-install-recommends -y \
     iputils-ping \
     && pip install --upgrade pip \
        pip install -r ./requirements.txt
-ENTRYPOINT ["python3", "weather_app.py" ]
+RUN ["chmod", "u+x", "/app/commands.sh"]
+ENTRYPOINT ["/app/commands.sh" ]
