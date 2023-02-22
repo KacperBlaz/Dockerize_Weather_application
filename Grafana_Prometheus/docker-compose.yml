@@ -104,4 +104,5 @@ services:
       - API_KEY
       - CITY
       - DATABASE_IP
+      - DATABASE
       - TABLE_NAME
