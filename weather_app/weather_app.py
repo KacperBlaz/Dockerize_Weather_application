@@ -3,7 +3,7 @@ import requests
 import json
 import csv
 import math
-import pymysql
+import mysql.connector
 
 
 API_KEY = os.environ.get('API_KEY')
@@ -47,7 +47,7 @@ def add_data_to_csv_file(csv_file, args):
 
 #CREATING MYSQL DATABASE IN CONTAINER
 def create_mysql_database(database_name: str) -> str:
-        mydb = pymysql.connect(
+        mydb = mysql.connector.connect(
         host = (f"{DATABASE_IP}"),
         user = (f"{MYSQL_ROOT_LOGIN}"),
         password = (f"{MYSQL_ROOT_PASSWORD}")
@@ -56,7 +56,7 @@ def create_mysql_database(database_name: str) -> str:
         try:
             mycursor.execute(f"CREATE DATABASE {database_name}")
             print(f"Database {database_name} has been created !")
-        except pymysql.err.ProgrammingError:
+        except mysql.connector.errors.DatabaseError:
             print(f"Error, database {database_name} exist! Skipping")
 
 
