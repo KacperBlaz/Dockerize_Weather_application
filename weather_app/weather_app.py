@@ -46,9 +46,10 @@ def add_data_to_csv_file(csv_file, args):
 
 
 #CREATING MYSQL DATABASE IN CONTAINER
-def create_mysq_database(database_name: str) -> str:
+def create_mysql_database(database_name: str) -> str:
         mydb = pymysql.connect(
-        host = (f"{DATABASE_IP}"),
+        host = "localhost:3306",
+#        host = (f"{DATABASE_IP}"),
         user = (f"{MYSQL_ROOT_LOGIN}"),
         password = (f"{MYSQL_ROOT_PASSWORD}")
         )
@@ -68,7 +69,7 @@ def import_csv_file_to_mysql_database(csv_file: str) -> str:
 
 
 #RUNNING FUNCTIONS
-create_mysq_database(DATABASE)
+create_mysql_database(DATABASE)
 print(args_from_output(get_api_data(CITY, API_KEY)))
 add_data_to_csv_file(FILE, args_from_output(get_api_data(CITY, API_KEY)))
 import_csv_file_to_mysql_database(FILE)
