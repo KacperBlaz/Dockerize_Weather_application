@@ -48,7 +48,7 @@ def add_data_to_csv_file(csv_file, args):
 #CREATING MYSQL DATABASE IN CONTAINER
 def create_mysql_database(database_name: str) -> str:
         mydb = mysql.connector.connect(
-        host = (f"{DATABASE_IP}"),
+        host = ("localhost"),
         user = (f"{MYSQL_ROOT_LOGIN}"),
         password = (f"{MYSQL_ROOT_PASSWORD}")
         )
