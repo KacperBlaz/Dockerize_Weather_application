@@ -1,7 +1,41 @@
-stages:          
-  - build
+image: docker:20-git
+services:
+  - docker:20-dind
 
-build-job:       
+
+variables:
+  COMPOSE_FILE: ./Grafana_Prometheus/docker-compose.yml
+  DOCKER_TLS_CERTS: "/certs"
+
+stages:
+  - build
+  - deploy
+  - delete
+
+app:
   stage: build
+  variables:
+    IMAGE_NAME: python
+    IMAGE_TAG: weatherapp
+  script: docker build -t $IMAGE_NAME:$IMAGE_TAG ./weather_app
+
+db:
+  stage: build
+  variables:
+    IMAGE_NAME: mysql
+    IMAGE_TAG: weatherapp
+  script: docker build -t $IMAGE_NAME:$IMAGE_TAG ./mysql_database
+
+deploy_weather_app:
+  stage: deploy
   script:
-    - echo "First Pipeline" > test.txt
+    - ls
+    - docker-compose up -d
+
+
+delete_weather_app:
+  stage: delete
+  script:
+    - ls
+    - docker-compose down
+  when: manual

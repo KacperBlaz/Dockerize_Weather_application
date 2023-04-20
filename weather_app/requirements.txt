@@ -1,0 +1,6 @@
+requests
+csvkit
+cryptography
+psycopg2-binary
+PyMySQL
+mysql-connector-python
